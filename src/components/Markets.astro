@@ -1,0 +1,86 @@
+---
+const markets = [
+  {
+    title: 'Residential',
+    description: 'Rooftop solar systems, heat pumps and home energy management for households and apartment buildings.',
+    photo: '/images/site/residential-solar.jpg',
+    items: ['Rooftop PV 5–100 kW', 'Battery storage', 'EV charging integration', 'Smart energy management'],
+  },
+  {
+    title: 'Commercial',
+    description: 'Energy cost reduction and sustainability goals for businesses, factories, hotels and retail chains.',
+    photo: '/images/site/commercial-building.jpg',
+    items: ['Commercial PV 100 kW – 5 MW', 'Power Purchase Agreements', 'Energy audits & optimization', 'Carbon footprint reporting'],
+  },
+  {
+    title: 'Municipal',
+    description: 'Large-scale renewable projects for cities, counties and public institutions across the EU.',
+    photo: '/images/site/municipal-city.jpg',
+    items: ['Utility-scale wind & solar', 'Hydroelectric facilities', 'Waste-to-energy plants', 'Community energy programs'],
+  },
+];
+---
+
+<section id="markets" class="py-24 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+      <span
+        class="inline-block px-4 py-1.5 rounded-full text-sm font-600 mb-4"
+        style="background: rgba(249,168,0,0.12); color: var(--color-amber-dark)"
+      >Markets Served</span>
+      <h2 class="text-4xl md:text-5xl font-800 mb-4 leading-snug" style="color: var(--color-dark)">
+        Solutions for Every<br /><span class="text-gradient">Scale & Sector</span>
+      </h2>
+    </div>
+
+    <!-- Market cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {markets.map((market, i) => (
+        <div
+          class="rounded-3xl bg-white card-hover reveal"
+          style={`border: 1px solid rgba(249,168,0,0.12); transition-delay: ${i * 120}ms`}
+        >
+          <!-- Photo header -->
+          <div class="relative h-52 overflow-hidden rounded-t-3xl">
+            <img
+              src={market.photo}
+              alt={market.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div
+              class="absolute inset-0"
+              style="background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(10,43,30,0.45) 100%)"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="p-6">
+            <h3
+              class="text-2xl font-800 mb-3 leading-snug"
+              style="font-family: 'Urbanist', sans-serif; color: var(--color-dark)"
+            >{market.title}</h3>
+            <p class="text-sm leading-relaxed mb-5" style="color: var(--color-muted)">{market.description}</p>
+            <ul class="space-y-2">
+              {market.items.map(item => (
+                <li class="flex items-center gap-2.5 text-sm" style="color: var(--color-text)">
+                  <span
+                    class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style="background: var(--color-primary-light)"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--color-primary)">
+                      <path d="M5 13l4 4L19 7"/>
+                    </svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,117 @@
+---
+const links = {
+  Services: ['Solar Energy', 'Wind Turbines', 'Hydroelectric', 'Geothermal', 'Waste-to-Energy', 'Consulting'],
+  Company: ['About Us', 'Projects', 'Careers', 'News', 'Contact'],
+  Legal: ['Privacy Policy', 'Terms of Use', 'Cookie Policy'],
+};
+
+const socials = [
+  {
+    name: 'Facebook',
+    href: '#',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>`,
+  },
+  {
+    name: 'Instagram',
+    href: '#',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  },
+  {
+    name: 'LinkedIn',
+    href: '#',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>`,
+  },
+  {
+    name: 'YouTube',
+    href: '#',
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>`,
+  },
+];
+---
+
+<footer style="background: var(--color-dark); color: white">
+  <!-- Top section -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <a href="#home" class="flex items-center mb-5">
+          <img src="/images/Renervision-Logo.png" alt="Renervision" class="h-9 w-auto" />
+        </a>
+        <p class="text-sm leading-relaxed mb-6 max-w-xs" style="color: rgba(255,255,255,0.55)">
+          Leading renewable energy solutions provider across Europe. Solar, wind, hydro,
+          geothermal and waste-to-energy — end to end.
+        </p>
+
+        <!-- Newsletter -->
+        <form class="flex gap-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            class="flex-1 px-4 py-2.5 rounded-xl text-sm outline-none"
+            style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: white"
+          />
+          <button
+            type="submit"
+            class="px-4 py-2.5 rounded-xl text-sm font-600 text-white flex-shrink-0 transition-all hover:opacity-90"
+            style="background: var(--color-primary)"
+          >Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Links -->
+      {Object.entries(links).map(([group, items]) => (
+        <div>
+          <h4 class="text-sm font-700 mb-4 uppercase tracking-wider" style="color: rgba(255,255,255,0.4)">{group}</h4>
+          <ul class="space-y-3">
+            {items.map(item => (
+              <li>
+                <a
+                  href="#"
+                  class="text-sm transition-colors hover:text-white"
+                  style="color: rgba(255,255,255,0.6)"
+                >{item}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div style="border-top: 1px solid rgba(255,255,255,0.08)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm" style="color: rgba(255,255,255,0.4)">
+        © {new Date().getFullYear()} RENERVISION d.o.o. · Zagreb, Croatia
+      </p>
+
+      <!-- Social icons -->
+      <div class="flex items-center gap-3">
+        {socials.map(s => (
+          <a
+            href={s.href}
+            aria-label={s.name}
+            class="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-110 hover:text-white"
+            style="background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.55)"
+            set:html={s.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button
+  id="back-top"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110"
+  style="background: var(--color-primary)"
+  aria-label="Back to top"
+>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>

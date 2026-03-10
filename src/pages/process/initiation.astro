@@ -1,0 +1,225 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Phase 01: Initiation — RENERVISION" description="Site assessment, resource analysis, feasibility study and initial financial modelling for your renewable energy project.">
+  <Header />
+  <main style="padding-top: 80px">
+
+    <!-- Hero -->
+    <section style="background: var(--color-dark); color: white" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <a href="/#process" class="inline-flex items-center gap-2 text-sm mb-8 opacity-60 hover:opacity-100 transition-opacity" style="color: white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Process
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white flex-shrink-0" style="background: var(--color-primary)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M6.343 6.343l-.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M17.657 6.343l.707-.707M12 21a9 9 0 110-18 9 9 0 010 18z"/></svg>
+          </div>
+          <span class="text-6xl font-800 opacity-10 select-none" style="font-family:'Urbanist',sans-serif">01</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-800 mb-5 leading-tight" style="font-family:'Urbanist',sans-serif">
+          Phase 01:<br />
+          <span style="background: linear-gradient(135deg,#E84415,#F9A800); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text">Initiation</span>
+        </h1>
+        <p class="text-xl max-w-2xl" style="color: rgba(255,255,255,0.65)">
+          Every successful energy project begins with a thorough Initiation phase — assessing the site, analysing the resource potential, verifying technical feasibility, and building the financial case for investment.
+        </p>
+      </div>
+    </section>
+
+    <!-- Overview cards -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: 'Duration', value: '4–8 weeks', icon: '🗓' },
+            { label: 'Key output', value: 'Feasibility Report', icon: '📋' },
+            { label: 'Decision gate', value: 'Go / No-Go', icon: '✅' },
+            { label: 'Cost', value: '1–2% of CAPEX', icon: '💶' },
+          ].map(item => (
+            <div class="bg-white rounded-2xl p-5 text-center" style="border: 1px solid rgba(13,27,42,0.07)">
+              <div class="text-2xl mb-2">{item.icon}</div>
+              <p class="text-xs font-600 uppercase tracking-wider mb-1" style="color: var(--color-muted)">{item.label}</p>
+              <p class="font-700" style="color: var(--color-dark)">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: description -->
+        <div>
+          <h2 class="text-3xl font-800 mb-6" style="color: var(--color-dark)">What happens in this phase?</h2>
+          <div class="space-y-5 text-base leading-relaxed" style="color: var(--color-muted)">
+            <p>The Initiation phase establishes the technical and economic foundation of the entire project. Our specialists visit the site, gather meteorological and geological data, and use simulation software to model energy yields.</p>
+            <p>At the same time our financial team constructs a preliminary investment model — including CAPEX estimates, expected revenues, incentive frameworks, and return metrics such as IRR and NPV.</p>
+            <p>The phase concludes with a structured Feasibility Report containing a formal Go / No-Go recommendation, providing investors with the evidence needed to proceed with confidence.</p>
+          </div>
+
+          <!-- Deliverables -->
+          <div class="mt-10">
+            <h3 class="text-xl font-700 mb-4" style="color: var(--color-dark)">Key Deliverables</h3>
+            <ul class="space-y-3">
+              {[
+                'Site inspection report with GPS-mapped boundaries',
+                'Resource assessment (solar irradiance / wind / hydro flow data)',
+                'Technical yield simulation (P50 / P90 scenarios)',
+                'Preliminary CAPEX & OPEX estimate',
+                'Financial model: IRR, NPV, payback period',
+                'Risk register — initial version',
+                'Go / No-Go recommendation memo',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm" style="color: var(--color-text)">
+                  <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background: var(--color-primary-light)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--color-primary)"><path d="M5 13l4 4L19 7"/></svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Site Evaluation Chart -->
+        <div>
+          <h3 class="text-xl font-700 mb-6" style="color: var(--color-dark)">Site Evaluation Scorecard</h3>
+          <div class="bg-white rounded-2xl p-6" style="border: 1px solid rgba(13,27,42,0.07)">
+            {[
+              { label: 'Solar Irradiance', score: 88, color: '#F9A800' },
+              { label: 'Wind Speed (avg)', score: 72, color: '#4A7FD4' },
+              { label: 'Grid Proximity', score: 65, color: '#E84415' },
+              { label: 'Land Availability', score: 91, color: '#F9A800' },
+              { label: 'Environmental Sensitivity', score: 78, color: '#4A7FD4' },
+              { label: 'Permitting Complexity', score: 55, color: '#E84415' },
+              { label: 'Road Access', score: 83, color: '#F9A800' },
+            ].map(row => (
+              <div class="mb-4">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-sm font-500" style="color: var(--color-text)">{row.label}</span>
+                  <span class="text-sm font-700" style={`color: ${row.color}`}>{row.score}/100</span>
+                </div>
+                <div class="h-2 rounded-full" style="background: var(--color-surface)">
+                  <div class="h-2 rounded-full transition-all" style={`width: ${row.score}%; background: ${row.color}`}></div>
+                </div>
+              </div>
+            ))}
+            <div class="mt-5 pt-4 flex items-center justify-between" style="border-top: 1px solid var(--color-surface)">
+              <span class="text-sm font-600" style="color: var(--color-muted)">Overall Site Score</span>
+              <span class="text-xl font-800" style="color: var(--color-dark)">76 / 100</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Projection Chart -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Preliminary Financial Projection</h2>
+        <div class="bg-white rounded-2xl p-8" style="border: 1px solid rgba(13,27,42,0.07)">
+
+          <!-- Cumulative cash flow SVG chart -->
+          <p class="text-sm font-600 mb-6" style="color: var(--color-muted)">Cumulative Cash Flow — 25-year project lifetime (illustrative)</p>
+          <svg viewBox="0 0 800 300" class="w-full" style="overflow: visible">
+            <!-- Grid lines -->
+            <line x1="60" y1="30" x2="60" y2="250" stroke="#E5E8ED" stroke-width="1"/>
+            <line x1="60" y1="250" x2="760" y2="250" stroke="#E5E8ED" stroke-width="1"/>
+            {[0,1,2,3,4].map(i => (
+              <line x1="60" y1={30 + i*55} x2="760" y2={30 + i*55} stroke="#E5E8ED" stroke-width="0.5" stroke-dasharray="4 4"/>
+            ))}
+            <!-- Y-axis labels -->
+            <text x="50" y="34" text-anchor="end" font-size="10" fill="#6B7A8D">+20M€</text>
+            <text x="50" y="89" text-anchor="end" font-size="10" fill="#6B7A8D">+10M€</text>
+            <text x="50" y="144" text-anchor="end" font-size="10" fill="#6B7A8D">0</text>
+            <text x="50" y="199" text-anchor="end" font-size="10" fill="#6B7A8D">-10M€</text>
+            <text x="50" y="254" text-anchor="end" font-size="10" fill="#6B7A8D">-20M€</text>
+            <!-- Zero line emphasis -->
+            <line x1="60" y1="140" x2="760" y2="140" stroke="#0D1B2A" stroke-width="1" opacity="0.2"/>
+            <!-- Polyline: starts negative (investment), crosses zero ~yr8, ends positive -->
+            <polyline
+              points="60,250 100,248 140,245 180,240 220,235 260,220 300,200 340,175 380,148 420,130 460,112 500,96 540,82 580,68 620,57 660,48 700,40 740,34 760,32"
+              fill="none"
+              stroke="#E84415"
+              stroke-width="2.5"
+              stroke-linejoin="round"
+            />
+            <!-- Fill area above zero -->
+            <polygon
+              points="380,148 420,130 460,112 500,96 540,82 580,68 620,57 660,48 700,40 740,34 760,32 760,140 380,140"
+              fill="#E84415"
+              opacity="0.08"
+            />
+            <!-- Payback marker -->
+            <line x1="378" y1="30" x2="378" y2="250" stroke="#F9A800" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <text x="382" y="50" font-size="10" fill="#F9A800" font-weight="600">Payback ~Yr 8</text>
+            <!-- X-axis labels -->
+            {[0,5,10,15,20,25].map((yr, i) => (
+              <text x={60 + i * 140} y="265" text-anchor="middle" font-size="10" fill="#6B7A8D">Yr {yr}</text>
+            ))}
+          </svg>
+
+          <!-- KPI row -->
+          <div class="grid grid-cols-3 gap-6 mt-8 pt-6" style="border-top: 1px solid var(--color-surface)">
+            {[
+              { label: 'Estimated IRR', value: '11–14%', color: 'var(--color-primary)' },
+              { label: 'NPV (25 yr)', value: '+18.4 M€', color: 'var(--color-blue)' },
+              { label: 'Payback Period', value: '7–9 years', color: 'var(--color-amber)' },
+            ].map(kpi => (
+              <div class="text-center">
+                <p class="text-2xl font-800 mb-1" style={`font-family:'Urbanist',sans-serif; color: ${kpi.color}`}>{kpi.value}</p>
+                <p class="text-xs font-500 uppercase tracking-wider" style="color: var(--color-muted)">{kpi.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process flow diagram -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Initiation Phase Workflow</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { step: '1', title: 'Site Visit & Data Collection', desc: 'GPS mapping, photographic documentation, access routes, grid proximity check', color: '#E84415' },
+            { step: '2', title: 'Resource Analysis', desc: 'Wind / solar / hydro data from meteorological stations and satellite sources (10+ year series)', color: '#F9A800' },
+            { step: '3', title: 'Yield Simulation', desc: 'Energy model using PVsyst / WAsP / HEC-HMS. P50 & P90 annual production scenarios', color: '#4A7FD4' },
+            { step: '4', title: 'Financial Modelling', desc: 'CAPEX, OPEX, revenue forecast, incentive mapping, IRR / NPV / payback calculation', color: '#E84415' },
+          ].map(item => (
+            <div class="rounded-2xl p-6 bg-white relative" style="border: 1px solid rgba(13,27,42,0.07)">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-700 mb-4" style={`background: ${item.color}`}>
+                {item.step}
+              </div>
+              <h4 class="font-700 mb-2 text-sm" style="color: var(--color-dark)">{item.title}</h4>
+              <p class="text-xs leading-relaxed" style="color: var(--color-muted)">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="py-12" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
+        <a href="/#process" class="inline-flex items-center gap-2 text-sm font-600" style="color: var(--color-muted)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          All Phases
+        </a>
+        <a href="/process/planning" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-600 text-white" style="background: var(--color-primary)">
+          Phase 02: Planning
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>

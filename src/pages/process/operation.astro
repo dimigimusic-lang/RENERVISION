@@ -1,0 +1,290 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Phase 04: Operation & Maintenance — RENERVISION" description="Long-term performance monitoring, preventive maintenance, remote diagnostics and reporting.">
+  <Header />
+  <main style="padding-top: 80px">
+
+    <!-- Hero -->
+    <section style="background: var(--color-dark); color: white" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <a href="/#process" class="inline-flex items-center gap-2 text-sm mb-8 opacity-60 hover:opacity-100 transition-opacity" style="color: white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Process
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white flex-shrink-0" style="background: var(--color-amber)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <span class="text-6xl font-800 opacity-10 select-none" style="font-family:'Urbanist',sans-serif">04</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-800 mb-5 leading-tight" style="font-family:'Urbanist',sans-serif">
+          Phase 04:<br />
+          <span style="background: linear-gradient(135deg,#F9A800,#4A7FD4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text">Operation &amp; Maintenance</span>
+        </h1>
+        <p class="text-xl max-w-2xl" style="color: rgba(255,255,255,0.65)">
+          The O&amp;M phase spans the full 25–30 year operating life of the asset. Our team ensures maximum energy yield, minimum downtime, and transparent performance reporting for investors and lenders.
+        </p>
+      </div>
+    </section>
+
+    <!-- Overview cards -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: 'Contract length', value: '5–25 years', icon: '📅' },
+            { label: 'Availability target', value: '≥ 98%', icon: '⚡' },
+            { label: 'Reporting', value: 'Monthly + Annual', icon: '📊' },
+            { label: 'Response SLA', value: '< 4 hours', icon: '🔧' },
+          ].map(item => (
+            <div class="bg-white rounded-2xl p-5 text-center" style="border: 1px solid rgba(13,27,42,0.07)">
+              <div class="text-2xl mb-2">{item.icon}</div>
+              <p class="text-xs font-600 uppercase tracking-wider mb-1" style="color: var(--color-muted)">{item.label}</p>
+              <p class="font-700" style="color: var(--color-dark)">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: description + deliverables -->
+        <div>
+          <h2 class="text-3xl font-800 mb-6" style="color: var(--color-dark)">What happens in this phase?</h2>
+          <div class="space-y-5 text-base leading-relaxed" style="color: var(--color-muted)">
+            <p>Once the plant reaches Commercial Operation, RENERVISION takes over as the O&amp;M operator under a long-term service agreement. Our 24/7 remote monitoring centre tracks every inverter, turbine, and meter in real time.</p>
+            <p>Preventive maintenance is scheduled based on OEM recommendations and our own predictive analytics. On-site technicians respond to corrective alarms within the SLA window, minimising generation loss.</p>
+            <p>Asset managers compile monthly performance reports and annual energy audits, which are distributed to investors and lenders. All data feeds into the SCADA historian and is accessible via the owner portal.</p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="text-xl font-700 mb-4" style="color: var(--color-dark)">Key Deliverables</h3>
+            <ul class="space-y-3">
+              {[
+                '24/7 SCADA remote monitoring & alarm management',
+                'Preventive maintenance (scheduled per OEM intervals)',
+                'Corrective maintenance with < 4h on-site response',
+                'Spare parts management & inventory control',
+                'Monthly performance & energy yield report',
+                'Annual technical audit & degradation assessment',
+                'Regulatory compliance & grid code reporting',
+                'Investor portal with live KPI dashboard',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm" style="color: var(--color-text)">
+                  <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background: var(--color-amber-light)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--color-amber-dark)"><path d="M5 13l4 4L19 7"/></svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Annual energy production chart -->
+        <div>
+          <h3 class="text-xl font-700 mb-6" style="color: var(--color-dark)">Annual Energy Production (MWh)</h3>
+          <div class="bg-white rounded-2xl p-6" style="border: 1px solid rgba(13,27,42,0.07)">
+            <svg viewBox="0 0 480 240" class="w-full">
+              <!-- Grid -->
+              <line x1="50" y1="20" x2="50" y2="200" stroke="#E5E8ED" stroke-width="1"/>
+              <line x1="50" y1="200" x2="460" y2="200" stroke="#E5E8ED" stroke-width="1"/>
+              {[0,1,2,3].map(i => (
+                <line x1="50" y1={20 + i * 60} x2="460" y2={20 + i * 60} stroke="#E5E8ED" stroke-width="0.5" stroke-dasharray="3 3"/>
+              ))}
+              <!-- Y labels -->
+              <text x="44" y="24" text-anchor="end" font-size="9" fill="#6B7A8D">8000</text>
+              <text x="44" y="84" text-anchor="end" font-size="9" fill="#6B7A8D">6000</text>
+              <text x="44" y="144" text-anchor="end" font-size="9" fill="#6B7A8D">4000</text>
+              <text x="44" y="204" text-anchor="end" font-size="9" fill="#6B7A8D">2000</text>
+              <!-- Monthly bars (Jan–Dec), energy varies by season -->
+              {[
+                ['Jan', 3200, '#4A7FD4'],
+                ['Feb', 4100, '#4A7FD4'],
+                ['Mar', 5800, '#F9A800'],
+                ['Apr', 6900, '#F9A800'],
+                ['May', 7600, '#F9A800'],
+                ['Jun', 7900, '#E84415'],
+                ['Jul', 7700, '#E84415'],
+                ['Aug', 7200, '#E84415'],
+                ['Sep', 5900, '#F9A800'],
+                ['Oct', 4500, '#4A7FD4'],
+                ['Nov', 3100, '#4A7FD4'],
+                ['Dec', 2800, '#4A7FD4'],
+              ].map(([month, val, color], i) => {
+                const barH = (val / 8000) * 180;
+                const x = 58 + i * 34;
+                return (
+                  <g>
+                    <rect x={x} y={200 - barH} width="22" height={barH} rx="4" fill={color} opacity="0.85"/>
+                    <text x={x + 11} y="215" text-anchor="middle" font-size="8" fill="#6B7A8D">{month}</text>
+                  </g>
+                )
+              })}
+              <!-- P50 line -->
+              <line x1="50" y1="91" x2="460" y2="91" stroke="#E84415" stroke-width="1.5" stroke-dasharray="5 3"/>
+              <text x="463" y="95" font-size="9" fill="#E84415" font-weight="600">P50</text>
+            </svg>
+            <div class="mt-2 pt-4 grid grid-cols-3 gap-4" style="border-top: 1px solid var(--color-surface)">
+              {[
+                { label: 'Total Annual', value: '62,700 MWh', color: 'var(--color-dark)' },
+                { label: 'Availability', value: '98.4%', color: 'var(--color-blue)' },
+                { label: 'PR (Perf. Ratio)', value: '84.2%', color: 'var(--color-amber-dark)' },
+              ].map(kpi => (
+                <div class="text-center">
+                  <p class="font-800 text-lg" style={`color: ${kpi.color}; font-family:'Urbanist',sans-serif`}>{kpi.value}</p>
+                  <p class="text-xs" style="color: var(--color-muted)">{kpi.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Maintenance schedule -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Preventive Maintenance Schedule</h2>
+        <div class="bg-white rounded-2xl overflow-hidden" style="border: 1px solid rgba(13,27,42,0.07)">
+          <div class="grid grid-cols-5 gap-0 text-xs font-700 uppercase tracking-wider px-6 py-3" style="background: var(--color-dark); color: rgba(255,255,255,0.7)">
+            <div>Task</div>
+            <div class="text-center">Monthly</div>
+            <div class="text-center">Quarterly</div>
+            <div class="text-center">Semi-Annual</div>
+            <div class="text-center">Annual</div>
+          </div>
+          {[
+            ['SCADA data review & alarm check', true, false, false, false],
+            ['Inverter performance analysis', true, false, false, false],
+            ['Visual inspection of panels / turbine blades', false, true, false, false],
+            ['Electrical connection torque check', false, true, false, false],
+            ['Cleaning of PV modules', false, true, false, false],
+            ['Transformer oil sampling', false, false, true, false],
+            ['Protection relay testing', false, false, true, false],
+            ['Full mechanical inspection (turbines)', false, false, false, true],
+            ['Thermographic survey (IR camera)', false, false, false, true],
+            ['Annual energy audit & yield report', false, false, false, true],
+          ].map((row, ri) => (
+            <div class="grid grid-cols-5 gap-0 px-6 py-3 text-sm" style={`background: ${ri % 2 === 0 ? 'white' : 'var(--color-surface)'}`}>
+              <div class="font-500" style="color: var(--color-text)">{row[0]}</div>
+              {[row[1], row[2], row[3], row[4]].map((active, ci) => (
+                <div class="text-center">
+                  {active ? (
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full" style={`background: ${ci===0?'#FEF0EC':ci===1?'#EEF3FB':ci===2?'#FFF8E1':'var(--color-surface)'}`}>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style={`color: ${ci===0?'#E84415':ci===1?'#4A7FD4':ci===2?'#D48B00':'#0D1B2A'}`}><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                  ) : (
+                    <span style="color: #E5E8ED">—</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SCADA / Monitoring diagram -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Remote Monitoring Architecture</h2>
+        <div class="bg-white rounded-2xl p-8" style="border: 1px solid rgba(13,27,42,0.07)">
+          <svg viewBox="0 0 800 260" class="w-full">
+            <!-- Field level -->
+            <rect x="20" y="160" width="90" height="60" rx="10" fill="#FEF0EC" stroke="#E84415" stroke-width="1.5"/>
+            <text x="65" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Sensors &amp;</text>
+            <text x="65" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Meters</text>
+            <text x="65" y="213" text-anchor="middle" font-size="8" fill="#6B7A8D">Field level</text>
+
+            <rect x="130" y="160" width="90" height="60" rx="10" fill="#FEF0EC" stroke="#E84415" stroke-width="1.5"/>
+            <text x="175" y="186" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Data</text>
+            <text x="175" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Logger</text>
+            <text x="175" y="213" text-anchor="middle" font-size="8" fill="#6B7A8D">RTU / PLC</text>
+
+            <!-- Arrow up -->
+            <line x1="175" y1="160" x2="175" y2="120" stroke="#6B7A8D" stroke-width="1.5" marker-end="url(#arw)"/>
+            <line x1="65" y1="160" x2="65" y2="130" stroke="#6B7A8D" stroke-width="1.5"/>
+            <line x1="65" y1="130" x2="175" y2="130" stroke="#6B7A8D" stroke-width="1.5"/>
+
+            <!-- Control level: SCADA -->
+            <rect x="120" y="60" width="110" height="60" rx="10" fill="#EEF3FB" stroke="#4A7FD4" stroke-width="2"/>
+            <text x="175" y="86" text-anchor="middle" font-size="11" font-weight="600" fill="#4A7FD4">SCADA</text>
+            <text x="175" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#4A7FD4">Server</text>
+            <text x="175" y="115" text-anchor="middle" font-size="9" fill="#6B7A8D">On-site / Cloud</text>
+
+            <!-- Arrow right -->
+            <line x1="230" y1="90" x2="290" y2="90" stroke="#6B7A8D" stroke-width="1.5" marker-end="url(#arw)"/>
+
+            <!-- Firewall -->
+            <rect x="290" y="68" width="70" height="44" rx="8" fill="var(--color-surface)" stroke="#0D1B2A" stroke-width="1.5"/>
+            <text x="325" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#0D1B2A">Secure</text>
+            <text x="325" y="103" text-anchor="middle" font-size="10" font-weight="600" fill="#0D1B2A">Firewall</text>
+
+            <line x1="360" y1="90" x2="400" y2="90" stroke="#6B7A8D" stroke-width="1.5" marker-end="url(#arw)"/>
+
+            <!-- Cloud / NOC -->
+            <rect x="400" y="55" width="120" height="70" rx="12" fill="#FFF8E1" stroke="#F9A800" stroke-width="2"/>
+            <text x="460" y="82" text-anchor="middle" font-size="11" font-weight="600" fill="#D48B00">NOC</text>
+            <text x="460" y="98" text-anchor="middle" font-size="10" fill="#D48B00">24/7 Monitoring</text>
+            <text x="460" y="113" text-anchor="middle" font-size="9" fill="#6B7A8D">Zagreb Operations Centre</text>
+
+            <line x1="520" y1="90" x2="560" y2="90" stroke="#6B7A8D" stroke-width="1.5" marker-end="url(#arw)"/>
+
+            <!-- Owner portal -->
+            <rect x="560" y="55" width="110" height="70" rx="12" fill="var(--color-dark)"/>
+            <text x="615" y="82" text-anchor="middle" font-size="10" font-weight="600" fill="white">Owner</text>
+            <text x="615" y="98" text-anchor="middle" font-size="10" font-weight="600" fill="white">Portal</text>
+            <text x="615" y="113" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)">Web + Mobile app</text>
+
+            <!-- Reports branch -->
+            <line x1="615" y1="125" x2="615" y2="165" stroke="#F9A800" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <rect x="565" y="165" width="110" height="50" rx="10" fill="#FFF8E1" stroke="#F9A800" stroke-width="1.5"/>
+            <text x="620" y="187" text-anchor="middle" font-size="10" font-weight="600" fill="#D48B00">Monthly &amp;</text>
+            <text x="620" y="202" text-anchor="middle" font-size="10" font-weight="600" fill="#D48B00">Annual Reports</text>
+
+            <!-- Alarm branch -->
+            <line x1="460" y1="125" x2="460" y2="165" stroke="#E84415" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <rect x="405" y="165" width="110" height="50" rx="10" fill="#FEF0EC" stroke="#E84415" stroke-width="1.5"/>
+            <text x="460" y="187" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Alarm</text>
+            <text x="460" y="202" text-anchor="middle" font-size="10" font-weight="600" fill="#E84415">Dispatch</text>
+
+            <defs>
+              <marker id="arw" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#6B7A8D"/>
+              </marker>
+            </defs>
+
+            <!-- Level labels -->
+            <text x="400" y="250" text-anchor="middle" font-size="9" fill="#6B7A8D">Field Layer</text>
+            <text x="175" y="250" text-anchor="middle" font-size="9" fill="#6B7A8D">Control Layer</text>
+            <text x="530" y="250" text-anchor="middle" font-size="9" fill="#6B7A8D">Management &amp; Reporting Layer</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="py-12" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
+        <a href="/process/implementation" class="inline-flex items-center gap-2 text-sm font-600" style="color: var(--color-muted)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Phase 03: Implementation
+        </a>
+        <a href="#contact" onclick="window.location.href='/#contact'" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-600 text-white" style="background: var(--color-primary)">
+          Start Your Project
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>

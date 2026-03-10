@@ -1,0 +1,146 @@
+---
+const slides = [
+  {
+    image: '/images/slideshow/solar-energy-panels.jpg',
+    label: 'Solar Energy',
+  },
+  {
+    image: '/images/slideshow/valvestino-dam-in-italy-hydroelectric-power-plant-.jpg',
+    label: 'Hydroelectric',
+  },
+  {
+    image: '/images/slideshow/germany-gundremmingen-gundremmingen-nuclear-power-plant.jpg',
+    label: 'Power Plants',
+  },
+  {
+    image: '/images/slideshow/aerial-view-of-part-of-windmill-turbine-in-countryside-green-energy.jpg',
+    label: 'Wind Power',
+  },
+  {
+    image: '/images/slideshow/wte_plant.png',
+    label: 'Waste-to-Energy',
+  },
+  {
+    image: '/images/slideshow/Geothermal_Power_Plants.png',
+    label: 'Geothermal',
+  },
+];
+---
+
+<section id="home" class="relative min-h-screen flex items-center" style="overflow-x: clip">
+
+  <!-- Slideshow backgrounds -->
+  <div class="absolute inset-0 z-0" id="hero-slideshow">
+    {slides.map((slide, i) => (
+      <div
+        class={`hero-slide ${i === 0 ? 'active' : ''}`}
+        style={`background-image: url('${slide.image}')`}
+        data-index={i}
+      />
+    ))}
+    <!-- Dark overlay so photos shine through and text remains readable -->
+    <div
+      class="absolute inset-0 z-10"
+      style="background: linear-gradient(135deg, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.55) 50%, rgba(232,68,21,0.10) 100%)"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 w-full">
+    <div class="max-w-3xl">
+
+      <!-- Badge -->
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-600 mb-6 reveal"
+        style="background: rgba(249,168,0,0.18); color: var(--color-amber)"
+      >
+        <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--color-amber)"></span>
+        50% Renewable Energy in EU · 2024
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="text-5xl md:text-6xl lg:text-7xl font-800 leading-snug mb-6 reveal"
+        style="font-family: 'Urbanist', sans-serif; color: #ffffff"
+      >
+        The Better Source<br />
+        of Energy for a<br />
+        <span class="text-gradient">Better Tomorrow</span>
+      </h1>
+
+      <!-- Subtext -->
+      <p
+        class="text-lg md:text-xl leading-relaxed mb-10 max-w-xl reveal"
+        style="color: rgba(255,255,255,0.70)"
+      >
+        RENERVISION delivers complete renewable energy solutions — from feasibility studies
+        to full operation — for residential, commercial and municipal clients across Europe.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-4 reveal">
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-600 text-white transition-all hover:scale-105 hover:shadow-xl"
+          style="background: var(--color-primary)"
+        >
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a
+          href="#services"
+          class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-600 border-2 transition-all hover:scale-105"
+          style="color: #ffffff; border-color: rgba(255,255,255,0.45)"
+        >
+          Discover More
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Slide indicators -->
+      <div class="flex items-center gap-2 mt-12 reveal" id="slide-indicators">
+        {slides.map((slide, i) => (
+          <button
+            class={`slide-dot h-1 rounded-full transition-all duration-500 ${i === 0 ? 'w-8' : 'w-3 opacity-40'}`}
+            style={`background: var(--color-primary)`}
+            data-index={i}
+            aria-label={slide.label}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 opacity-60">
+    <span class="text-xs font-500" style="color: var(--color-muted)">Scroll</span>
+    <svg class="animate-bounce" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary)">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.slide-dot');
+  let current = 0;
+
+  function goTo(index: number) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('w-8');
+    dots[current].classList.add('w-3', 'opacity-40');
+
+    current = index;
+    slides[current].classList.add('active');
+    dots[current].classList.add('w-8');
+    dots[current].classList.remove('w-3', 'opacity-40');
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  setInterval(() => goTo((current + 1) % slides.length), 5000);
+</script>

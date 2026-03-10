@@ -1,0 +1,251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Phase 02: Planning — RENERVISION" description="Detailed engineering design, grid connection studies, environmental impact assessment and permitting.">
+  <Header />
+  <main style="padding-top: 80px">
+
+    <!-- Hero -->
+    <section style="background: var(--color-dark); color: white" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <a href="/#process" class="inline-flex items-center gap-2 text-sm mb-8 opacity-60 hover:opacity-100 transition-opacity" style="color: white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back to Process
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white flex-shrink-0" style="background: var(--color-amber)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </div>
+          <span class="text-6xl font-800 opacity-10 select-none" style="font-family:'Urbanist',sans-serif">02</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-800 mb-5 leading-tight" style="font-family:'Urbanist',sans-serif">
+          Phase 02:<br />
+          <span style="background: linear-gradient(135deg,#F9A800,#4A7FD4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text">Planning</span>
+        </h1>
+        <p class="text-xl max-w-2xl" style="color: rgba(255,255,255,0.65)">
+          Detailed engineering, permitting, grid studies and environmental assessment transform the feasibility findings into a fully approved, bankable project ready for construction.
+        </p>
+      </div>
+    </section>
+
+    <!-- Overview cards -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { label: 'Duration', value: '3–12 months', icon: '🗓' },
+            { label: 'Key output', value: 'Approved Permits', icon: '📄' },
+            { label: 'Decision gate', value: 'FID Ready', icon: '🏦' },
+            { label: 'Cost', value: '3–5% of CAPEX', icon: '💶' },
+          ].map(item => (
+            <div class="bg-white rounded-2xl p-5 text-center" style="border: 1px solid rgba(13,27,42,0.07)">
+              <div class="text-2xl mb-2">{item.icon}</div>
+              <p class="text-xs font-600 uppercase tracking-wider mb-1" style="color: var(--color-muted)">{item.label}</p>
+              <p class="font-700" style="color: var(--color-dark)">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: description + deliverables -->
+        <div>
+          <h2 class="text-3xl font-800 mb-6" style="color: var(--color-dark)">What happens in this phase?</h2>
+          <div class="space-y-5 text-base leading-relaxed" style="color: var(--color-muted)">
+            <p>Planning is the most document-intensive phase. Engineering teams produce detailed technical drawings, electrical single-line diagrams, and civil layout plans that form the basis for construction contracts.</p>
+            <p>Grid connection studies are submitted to the national transmission/distribution operator. Environmental Impact Assessments (EIA) are conducted in parallel, often requiring biological surveys and public consultations.</p>
+            <p>The phase ends when all required permits are issued and the project achieves Final Investment Decision (FID) readiness — meaning a construction lender can underwrite the project.</p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="text-xl font-700 mb-4" style="color: var(--color-dark)">Key Deliverables</h3>
+            <ul class="space-y-3">
+              {[
+                'Detailed engineering drawings (civil, electrical, structural)',
+                'Grid connection application & technical study',
+                'Environmental Impact Assessment (EIA)',
+                'Land lease / purchase agreements',
+                'Building & construction permits',
+                'Bankable project finance model',
+                'EPC & O&M tender packages',
+                'Final Investment Decision (FID) memo',
+              ].map(item => (
+                <li class="flex items-start gap-3 text-sm" style="color: var(--color-text)">
+                  <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background: var(--color-amber-light)">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--color-amber-dark)"><path d="M5 13l4 4L19 7"/></svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Gantt-style timeline -->
+        <div>
+          <h3 class="text-xl font-700 mb-6" style="color: var(--color-dark)">Planning Timeline (typical 9-month project)</h3>
+          <div class="bg-white rounded-2xl p-6" style="border: 1px solid rgba(13,27,42,0.07)">
+            <!-- Month labels -->
+            <div class="flex mb-3" style="padding-left: 160px">
+              {['M1','M2','M3','M4','M5','M6','M7','M8','M9'].map(m => (
+                <div class="flex-1 text-center text-xs font-600" style="color: var(--color-muted)">{m}</div>
+              ))}
+            </div>
+            {[
+              { task: 'Engineering Design', start: 0, span: 3, color: '#E84415' },
+              { task: 'Grid Connection Study', start: 1, span: 4, color: '#4A7FD4' },
+              { task: 'Environmental Impact Assessment', start: 0, span: 5, color: '#F9A800' },
+              { task: 'Land Agreements', start: 2, span: 2, color: '#E84415' },
+              { task: 'Permit Applications', start: 4, span: 3, color: '#4A7FD4' },
+              { task: 'Finance Structuring', start: 5, span: 3, color: '#F9A800' },
+              { task: 'EPC Tender', start: 7, span: 2, color: '#E84415' },
+            ].map(row => (
+              <div class="flex items-center mb-2.5" style="min-height: 28px">
+                <div class="text-xs font-500 pr-3 flex-shrink-0 text-right" style={`width: 160px; color: var(--color-text)`}>{row.task}</div>
+                <div class="flex flex-1 gap-0.5">
+                  {Array.from({length: 9}).map((_, i) => (
+                    <div
+                      class="flex-1 h-6 rounded"
+                      style={`background: ${i >= row.start && i < row.start + row.span ? row.color : 'transparent'}; opacity: ${i >= row.start && i < row.start + row.span ? '1' : '0'}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div class="mt-4 pt-4 flex gap-4 flex-wrap" style="border-top: 1px solid var(--color-surface)">
+              {[['Engineering','#E84415'],['Grid & Finance','#4A7FD4'],['Environmental & Permits','#F9A800']].map(([l,c]) => (
+                <div class="flex items-center gap-2 text-xs" style="color: var(--color-muted)">
+                  <div class="w-3 h-3 rounded-sm" style={`background: ${c}`}></div>
+                  {l}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid connection diagram -->
+    <section class="py-16" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Grid Connection Architecture</h2>
+        <div class="bg-white rounded-2xl p-8" style="border: 1px solid rgba(13,27,42,0.07)">
+          <svg viewBox="0 0 800 280" class="w-full">
+            <!-- Energy source box -->
+            <rect x="20" y="100" width="120" height="80" rx="12" fill="#FEF0EC" stroke="#E84415" stroke-width="2"/>
+            <text x="80" y="134" text-anchor="middle" font-size="11" font-weight="600" fill="#E84415">Energy</text>
+            <text x="80" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#E84415">Source</text>
+            <text x="80" y="166" text-anchor="middle" font-size="9" fill="#6B7A8D">(PV / Wind / Hydro)</text>
+
+            <!-- Arrow -->
+            <line x1="140" y1="140" x2="185" y2="140" stroke="#6B7A8D" stroke-width="2" marker-end="url(#arr)"/>
+
+            <!-- Inverter / Generator -->
+            <rect x="185" y="100" width="110" height="80" rx="12" fill="#EEF3FB" stroke="#4A7FD4" stroke-width="2"/>
+            <text x="240" y="134" text-anchor="middle" font-size="11" font-weight="600" fill="#4A7FD4">Inverter /</text>
+            <text x="240" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#4A7FD4">Generator</text>
+            <text x="240" y="166" text-anchor="middle" font-size="9" fill="#6B7A8D">AC conversion</text>
+
+            <line x1="295" y1="140" x2="340" y2="140" stroke="#6B7A8D" stroke-width="2" marker-end="url(#arr)"/>
+
+            <!-- MV Transformer -->
+            <rect x="340" y="100" width="110" height="80" rx="12" fill="#FFF8E1" stroke="#F9A800" stroke-width="2"/>
+            <text x="395" y="134" text-anchor="middle" font-size="11" font-weight="600" fill="#D48B00">MV</text>
+            <text x="395" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#D48B00">Transformer</text>
+            <text x="395" y="166" text-anchor="middle" font-size="9" fill="#6B7A8D">Step-up 0.4→20 kV</text>
+
+            <line x1="450" y1="140" x2="495" y2="140" stroke="#6B7A8D" stroke-width="2" marker-end="url(#arr)"/>
+
+            <!-- Grid substation -->
+            <rect x="495" y="85" width="110" height="110" rx="12" fill="var(--color-surface)" stroke="#0D1B2A" stroke-width="2"/>
+            <text x="550" y="127" text-anchor="middle" font-size="11" font-weight="600" fill="#0D1B2A">DSO/TSO</text>
+            <text x="550" y="143" text-anchor="middle" font-size="11" font-weight="600" fill="#0D1B2A">Substation</text>
+            <text x="550" y="159" text-anchor="middle" font-size="9" fill="#6B7A8D">Point of common</text>
+            <text x="550" y="172" text-anchor="middle" font-size="9" fill="#6B7A8D">coupling (PCC)</text>
+
+            <line x1="605" y1="140" x2="650" y2="140" stroke="#6B7A8D" stroke-width="2" marker-end="url(#arr)"/>
+
+            <!-- National Grid -->
+            <rect x="650" y="100" width="120" height="80" rx="12" fill="#0D1B2A"/>
+            <text x="710" y="134" text-anchor="middle" font-size="11" font-weight="600" fill="white">National</text>
+            <text x="710" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="white">Power Grid</text>
+            <text x="710" y="166" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)">110 / 400 kV</text>
+
+            <!-- SCADA label -->
+            <rect x="340" y="220" width="220" height="36" rx="8" fill="var(--color-surface)" stroke="#4A7FD4" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <text x="450" y="242" text-anchor="middle" font-size="10" font-weight="600" fill="#4A7FD4">SCADA / Monitoring System</text>
+            <!-- Dashed lines to SCADA -->
+            <line x1="395" y1="220" x2="395" y2="180" stroke="#4A7FD4" stroke-width="1" stroke-dasharray="4 3"/>
+            <line x1="550" y1="220" x2="550" y2="195" stroke="#4A7FD4" stroke-width="1" stroke-dasharray="4 3"/>
+
+            <!-- Arrow marker -->
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#6B7A8D"/>
+              </marker>
+            </defs>
+
+            <!-- Labels top -->
+            <text x="80" y="92" text-anchor="middle" font-size="9" fill="#6B7A8D">Low Voltage</text>
+            <text x="240" y="92" text-anchor="middle" font-size="9" fill="#6B7A8D">Medium Voltage</text>
+            <text x="550" y="75" text-anchor="middle" font-size="9" fill="#6B7A8D">High Voltage</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Permitting checklist -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <h2 class="text-3xl font-800 mb-10 text-center" style="color: var(--color-dark)">Permitting Checklist</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { permit: 'Location / Zoning Permit', authority: 'Municipal Authority', weeks: '4–8 wks', status: 'critical' },
+            { permit: 'EIA Screening & Approval', authority: 'Ministry of Environment', weeks: '8–24 wks', status: 'critical' },
+            { permit: 'Grid Connection Approval', authority: 'DSO / TSO', weeks: '12–20 wks', status: 'critical' },
+            { permit: 'Building Permit', authority: 'County Engineer', weeks: '6–12 wks', status: 'standard' },
+            { permit: 'Water Management Permit', authority: 'Water Authority', weeks: '4–10 wks', status: 'conditional' },
+            { permit: 'Aviation / Radar Clearance', authority: 'Civil Aviation Auth.', weeks: '4–8 wks', status: 'conditional' },
+          ].map(p => (
+            <div class="bg-white rounded-xl p-5" style="border: 1px solid rgba(13,27,42,0.07)">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <h4 class="font-600 text-sm" style="color: var(--color-dark)">{p.permit}</h4>
+                <span
+                  class="text-xs font-600 px-2 py-0.5 rounded-full flex-shrink-0"
+                  style={`background: ${p.status === 'critical' ? 'var(--color-primary-light)' : p.status === 'conditional' ? 'var(--color-amber-light)' : 'var(--color-blue-light)'}; color: ${p.status === 'critical' ? 'var(--color-primary)' : p.status === 'conditional' ? 'var(--color-amber-dark)' : 'var(--color-blue-dark)'}`}
+                >
+                  {p.status}
+                </span>
+              </div>
+              <p class="text-xs" style="color: var(--color-muted)">{p.authority}</p>
+              <p class="text-xs font-600 mt-2" style="color: var(--color-text)">⏱ {p.weeks}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="py-12" style="background: var(--color-surface)">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
+        <a href="/process/initiation" class="inline-flex items-center gap-2 text-sm font-600" style="color: var(--color-muted)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Phase 01: Initiation
+        </a>
+        <a href="/process/implementation" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-600 text-white" style="background: var(--color-primary)">
+          Phase 03: Implementation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
