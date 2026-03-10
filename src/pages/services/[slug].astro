@@ -427,19 +427,6 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
       </div>
     </section>
 
-    <!-- ── Key Stats ──────────────────────────────────────────── -->
-    <section class="py-14" style={`background: ${accentLight}`}>
-      <div class="max-w-7xl mx-auto px-6 lg:px-10">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map(stat => (
-            <div class="text-center">
-              <div class="text-3xl md:text-4xl font-800 mb-1" style={`color: ${accentDark}; font-family: 'Urbanist', sans-serif`}>{stat.value}</div>
-              <div class="text-sm leading-snug" style="color: var(--color-muted)">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
     <!-- ── How It Works ───────────────────────────────────────── -->
     <section class="py-24 lg:py-32">
