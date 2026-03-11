@@ -1,22 +1,30 @@
 ---
+import { useTranslations } from '../i18n/ui';
+import { defaultLang } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+export interface Props { lang?: Lang; }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
 const markets = [
   {
-    title: 'Residential',
-    description: 'Rooftop solar systems, heat pumps and home energy management for households and apartment buildings.',
+    title: t('markets.m1.title'),
+    description: t('markets.m1.desc'),
     photo: '/images/site/residential-solar.jpg',
-    items: ['Rooftop PV 5–100 kW', 'Battery storage', 'EV charging integration', 'Smart energy management'],
+    items: [t('markets.m1.i1'), t('markets.m1.i2'), t('markets.m1.i3'), t('markets.m1.i4')],
   },
   {
-    title: 'Commercial',
-    description: 'Energy cost reduction and sustainability goals for businesses, factories, hotels and retail chains.',
+    title: t('markets.m2.title'),
+    description: t('markets.m2.desc'),
     photo: '/images/site/commercial-building.jpg',
-    items: ['Commercial PV 100 kW – 5 MW', 'Power Purchase Agreements', 'Energy audits & optimization', 'Carbon footprint reporting'],
+    items: [t('markets.m2.i1'), t('markets.m2.i2'), t('markets.m2.i3'), t('markets.m2.i4')],
   },
   {
-    title: 'Municipal',
-    description: 'Large-scale renewable projects for cities, counties and public institutions across the EU.',
+    title: t('markets.m3.title'),
+    description: t('markets.m3.desc'),
     photo: '/images/site/municipal-city.jpg',
-    items: ['Utility-scale wind & solar', 'Hydroelectric facilities', 'Waste-to-energy plants', 'Community energy programs'],
+    items: [t('markets.m3.i1'), t('markets.m3.i2'), t('markets.m3.i3'), t('markets.m3.i4')],
   },
 ];
 ---
@@ -29,9 +37,9 @@ const markets = [
       <span
         class="inline-block px-4 py-1.5 rounded-full text-sm font-600 mb-4"
         style="background: rgba(249,168,0,0.12); color: var(--color-amber-dark)"
-      >Markets Served</span>
+      >{t('markets.badge')}</span>
       <h2 class="text-4xl md:text-5xl font-800 mb-4 leading-snug" style="color: var(--color-dark)">
-        Solutions for Every<br /><span class="text-gradient">Scale & Sector</span>
+        {t('markets.title1')}<br /><span class="text-gradient">{t('markets.title2')}</span>
       </h2>
     </div>
 
@@ -42,7 +50,6 @@ const markets = [
           class="rounded-3xl bg-white card-hover reveal"
           style={`border: 1px solid rgba(249,168,0,0.12); transition-delay: ${i * 120}ms`}
         >
-          <!-- Photo header -->
           <div class="relative h-52 overflow-hidden rounded-t-3xl">
             <img
               src={market.photo}
@@ -56,7 +63,6 @@ const markets = [
             />
           </div>
 
-          <!-- Content -->
           <div class="p-6">
             <h3
               class="text-2xl font-800 mb-3 leading-snug"

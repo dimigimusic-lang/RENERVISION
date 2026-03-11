@@ -1,17 +1,31 @@
 ---
+import { useTranslations } from '../i18n/ui';
+import { languages, defaultLang } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
 export interface Props {
   base?: string;
+  lang?: Lang;
+  currentPath?: string;
 }
-const { base = '' } = Astro.props;
+const { base = '', lang = defaultLang, currentPath = '' } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === defaultLang ? '' : `/${lang}`;
 
 const navLinks = [
-  { label: 'Home', href: `${base}/#home` },
-  { label: 'Services', href: `${base}/#services` },
-  { label: 'Why Us', href: `${base}/#why-us` },
-  { label: 'Process', href: `${base}/#process` },
-  { label: 'Markets', href: `${base}/#markets` },
-  { label: 'Contact', href: `${base}/#contact` },
+  { label: t('nav.home'), href: `${prefix}/#home` },
+  { label: t('nav.services'), href: `${prefix}/#services` },
+  { label: t('nav.whyUs'), href: `${prefix}/#why-us` },
+  { label: t('nav.process'), href: `${prefix}/#process` },
+  { label: t('nav.markets'), href: `${prefix}/#markets` },
+  { label: t('nav.contact'), href: `${prefix}/#contact` },
 ];
+
+// Build language switcher paths
+function langPath(targetLang: Lang): string {
+  if (targetLang === defaultLang) return '/';
+  return `/${targetLang}/`;
+}
 ---
 
 <header
@@ -22,7 +36,7 @@ const navLinks = [
   <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-18 py-3">
 
     <!-- Logo -->
-    <a href={`${base}/#home`} class="flex items-center">
+    <a href={`${prefix}/#home`} class="flex items-center">
       <img
         src="/images/Renervision-Logo.png"
         alt="Renervision"
@@ -43,17 +57,57 @@ const navLinks = [
       ))}
     </nav>
 
-    <!-- CTA -->
-    <a
-      href={`${base}/#contact`}
-      class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-600 text-white transition-all hover:scale-105 hover:shadow-lg"
-      style="background: var(--color-primary)"
-    >
-      Get Started
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
+    <!-- Right side: lang switcher + CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <!-- Language Switcher -->
+      <div class="relative" id="lang-switcher">
+        <button
+          id="lang-btn"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-500 transition-all hover:bg-white/10"
+          style="color: rgba(255,255,255,0.8)"
+          aria-label="Switch language"
+        >
+          <span>{languages[lang].flag}</span>
+          <span class="hidden lg:inline">{languages[lang].label}</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div
+          id="lang-dropdown"
+          class="absolute right-0 top-full mt-2 py-2 rounded-xl shadow-2xl min-w-[160px] opacity-0 pointer-events-none transition-all duration-200 scale-95"
+          style="background: #0D1B2A; border: 1px solid rgba(255,255,255,0.12)"
+        >
+          {Object.entries(languages).map(([code, { label, flag }]) => (
+            <a
+              href={langPath(code as Lang)}
+              class={`flex items-center gap-2.5 px-4 py-2 text-sm transition-colors hover:bg-white/10 ${code === lang ? 'font-600' : ''}`}
+              style={`color: ${code === lang ? '#F9A800' : 'rgba(255,255,255,0.7)'}`}
+            >
+              <span>{flag}</span>
+              <span>{label}</span>
+              {code === lang && (
+                <svg class="ml-auto" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #F9A800">
+                  <path d="M5 13l4 4L19 7"/>
+                </svg>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href={`${prefix}/#contact`}
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-600 text-white transition-all hover:scale-105 hover:shadow-lg"
+        style="background: var(--color-primary)"
+      >
+        {t('nav.getStarted')}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
 
     <!-- Mobile burger -->
     <button
@@ -81,13 +135,48 @@ const navLinks = [
           {link.label}
         </a>
       ))}
+
+      <!-- Mobile language switcher -->
+      <div class="flex flex-wrap gap-2 pt-2" style="border-top: 1px solid rgba(255,255,255,0.08)">
+        {Object.entries(languages).map(([code, { label, flag }]) => (
+          <a
+            href={langPath(code as Lang)}
+            class={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs transition-colors ${code === lang ? 'font-600' : ''}`}
+            style={`background: ${code === lang ? 'rgba(249,168,0,0.15)' : 'rgba(255,255,255,0.06)'}; color: ${code === lang ? '#F9A800' : 'rgba(255,255,255,0.6)'}`}
+          >
+            <span>{flag}</span>
+            <span>{label}</span>
+          </a>
+        ))}
+      </div>
+
       <a
-        href={`${base}/#contact`}
+        href={`${prefix}/#contact`}
         class="mt-2 text-center px-5 py-2.5 rounded-full text-sm font-600 text-white"
         style="background: var(--color-primary)"
       >
-        Get Started
+        {t('nav.getStarted')}
       </a>
     </nav>
   </div>
 </header>
+
+<script>
+  // Language dropdown toggle
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !langDropdown.classList.contains('pointer-events-none');
+      if (isOpen) {
+        langDropdown.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      } else {
+        langDropdown.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+      }
+    });
+    document.addEventListener('click', () => {
+      langDropdown.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+    });
+  }
+</script>

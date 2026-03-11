@@ -1,25 +1,42 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { allServices } from '../../data/services';
-import { useTranslations } from '../../i18n/ui';
-
-const t = useTranslations('en');
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { allServices } from '../../../data/services';
+import { useTranslations } from '../../../i18n/ui';
+import { getServiceText } from '../../../i18n/services';
+import { langList, defaultLang } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/utils';
 
 export function getStaticPaths() {
-  return allServices.map(s => ({
-    params: { slug: s.slug },
-    props: { service: s },
-  }));
+  const paths: { params: { lang: string; slug: string }; props: { service: typeof allServices[number]; lang: Lang } }[] = [];
+  for (const lang of langList) {
+    if (lang === defaultLang) continue;
+    for (const s of allServices) {
+      paths.push({
+        params: { lang, slug: s.slug },
+        props: { service: s, lang },
+      });
+    }
+  }
+  return paths;
 }
 
-const { service } = Astro.props;
-const { title, tagline, description, heroImage, accent, accentLight, accentDark, stats, howItWorks, benefits, chart } = service;
+const { service, lang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = `/${lang}`;
+
+// Overlay translated text if available
+const translated = getServiceText(service.slug, lang);
+const title = translated?.title ?? service.title;
+const tagline = translated?.tagline ?? service.tagline;
+const description = translated?.description ?? service.description;
+
+const { heroImage, accent, accentLight, accentDark, howItWorks, benefits, chart } = service;
 ---
 
 <Layout title={`${title} — RENERVISION`} description={description}>
-  <Header lang="en" />
+  <Header lang={lang} />
   <main>
 
     <!-- ── Hero ────────────────────────────────────────────────── -->
@@ -28,11 +45,10 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
       <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(13,27,42,0.68) 0%, rgba(13,27,42,0.82) 100%)" />
 
       <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
-        <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm mb-6" style="color: rgba(255,255,255,0.55)">
-          <a href="/" class="hover:text-white transition-colors">{t('servicePage.breadHome')}</a>
+          <a href={`${prefix}/`} class="hover:text-white transition-colors">{t('servicePage.breadHome')}</a>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-          <a href="/#services" class="hover:text-white transition-colors">{t('servicePage.breadServices')}</a>
+          <a href={`${prefix}/#services`} class="hover:text-white transition-colors">{t('servicePage.breadServices')}</a>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
           <span style="color: rgba(255,255,255,0.85)">{title}</span>
         </nav>
@@ -47,7 +63,6 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
         <p class="max-w-2xl text-lg leading-relaxed" style="color: rgba(255,255,255,0.8)">{description}</p>
       </div>
     </section>
-
 
     <!-- ── How It Works ───────────────────────────────────────── -->
     <section class="py-24 lg:py-32">
@@ -113,7 +128,6 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
                   class="rounded-2xl bg-white overflow-hidden reveal"
                   style={`border: 1px solid rgba(13,27,42,0.07); transition-delay: ${i * 80}ms`}
                 >
-                  <!-- Photo header -->
                   <div class="relative h-36 overflow-hidden">
                     <img
                       src={b.image ?? heroImage}
@@ -132,7 +146,6 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
                       set:html={b.icon ?? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`}
                     />
                   </div>
-                  <!-- Content -->
                   <div class="p-5">
                     <h3 class="font-700 mb-2" style="color: var(--color-dark)">{b.title}</h3>
                     <p class="text-sm leading-relaxed" style="color: var(--color-muted)">{b.description}</p>
@@ -207,14 +220,14 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="/#contact"
+            href={`${prefix}/#contact`}
             class="px-8 py-4 rounded-full text-sm font-600 text-white transition-all hover:scale-105 hover:shadow-lg"
             style={`background: ${accent}`}
           >
             {t('servicePage.ctaBtn1')}
           </a>
           <a
-            href="/#services"
+            href={`${prefix}/#services`}
             class="px-8 py-4 rounded-full text-sm font-600 transition-all hover:scale-105"
             style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2)"
           >
@@ -225,5 +238,5 @@ const { title, tagline, description, heroImage, accent, accentLight, accentDark,
     </section>
 
   </main>
-  <Footer lang="en" />
+  <Footer lang={lang} />
 </Layout>

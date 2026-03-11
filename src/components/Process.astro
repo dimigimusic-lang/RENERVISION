@@ -1,31 +1,35 @@
 ---
+import { useTranslations } from '../i18n/ui';
+import { defaultLang } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+export interface Props { lang?: Lang; }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
 const steps = [
   {
     number: '01',
-    title: 'Initiation',
-    description: 'Site assessment, resource analysis, feasibility study and initial financial modelling for your project.',
-    href: '/process/initiation',
+    title: t('process.s1.title'),
+    description: t('process.s1.desc'),
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3M6.343 6.343l-.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M17.657 6.343l.707-.707M12 21a9 9 0 110-18 9 9 0 010 18z"/></svg>`,
   },
   {
     number: '02',
-    title: 'Planning',
-    description: 'Detailed engineering design, grid connection studies, environmental impact assessment and permitting.',
-    href: '/process/planning',
+    title: t('process.s2.title'),
+    description: t('process.s2.desc'),
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
   },
   {
     number: '03',
-    title: 'Implementation',
-    description: 'Procurement, civil and electrical works, equipment installation, commissioning and grid connection.',
-    href: '/process/implementation',
+    title: t('process.s3.title'),
+    description: t('process.s3.desc'),
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
   },
   {
     number: '04',
-    title: 'Operation & Maintenance',
-    description: 'Long-term performance monitoring, preventive maintenance, remote diagnostics and reporting.',
-    href: '/process/operation',
+    title: t('process.s4.title'),
+    description: t('process.s4.desc'),
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
   },
 ];
@@ -39,12 +43,12 @@ const steps = [
       <span
         class="inline-block px-4 py-1.5 rounded-full text-sm font-600 mb-4"
         style="background: rgba(249,168,0,0.12); color: var(--color-amber-dark)"
-      >Our Process</span>
+      >{t('process.badge')}</span>
       <h2 class="text-4xl md:text-5xl font-800 mb-4 leading-snug" style="color: var(--color-dark)">
-        From Concept to<br /><span class="text-gradient">Full Operation</span>
+        {t('process.title1')}<br /><span class="text-gradient">{t('process.title2')}</span>
       </h2>
       <p class="max-w-xl mx-auto text-lg" style="color: var(--color-muted)">
-        A proven four-phase methodology that ensures every project is delivered on time, on budget, and at peak performance.
+        {t('process.subtitle')}
       </p>
     </div>
 
@@ -52,7 +56,6 @@ const steps = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {steps.map((step, i) => (
         <div class="relative reveal" style={`transition-delay: ${i * 120}ms`}>
-          <!-- Connector line (desktop) -->
           {i < steps.length - 1 && (
             <div
               class="hidden lg:block absolute top-10 left-[calc(100%+0.75rem)] w-6 border-t-2 border-dashed z-10"
@@ -64,7 +67,6 @@ const steps = [
             class="h-full p-6 rounded-2xl bg-white card-hover"
             style="border: 1px solid rgba(249,168,0,0.12)"
           >
-            <!-- Step number + icon -->
             <div class="flex items-center gap-3 mb-4">
               <div
                 class="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0"
@@ -78,15 +80,7 @@ const steps = [
             </div>
 
             <h3 class="text-lg font-700 mb-2 leading-snug" style="color: var(--color-dark)">{step.title}</h3>
-            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-muted)">{step.description}</p>
-            <a
-              href={step.href}
-              class="inline-flex items-center gap-1.5 text-xs font-600 transition-all hover:gap-2.5"
-              style="color: var(--color-primary)"
-            >
-              View details
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <p class="text-sm leading-relaxed" style="color: var(--color-muted)">{step.description}</p>
           </div>
         </div>
       ))}

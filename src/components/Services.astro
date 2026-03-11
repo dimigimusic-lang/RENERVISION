@@ -1,54 +1,63 @@
 ---
+import { useTranslations } from '../i18n/ui';
+import { defaultLang } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+export interface Props { lang?: Lang; }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === defaultLang ? '' : `/${lang}`;
+
 const services = [
   {
-    title: 'Solar Energy',
+    titleKey: 'services.solar.title' as const,
+    descKey: 'services.solar.desc' as const,
     slug: 'solar',
-    description: 'Photovoltaic systems for rooftop and utility-scale installations. From 5 kW residential to 100 MW utility farms.',
     photo: '/images/slideshow/solar-energy-panels.jpg',
     accent: 'var(--color-amber)',
     accentLight: 'var(--color-amber-light)',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
   },
   {
-    title: 'Wind Turbines',
+    titleKey: 'services.wind.title' as const,
+    descKey: 'services.wind.desc' as const,
     slug: 'wind',
-    description: 'Onshore and offshore wind farm development, from resource assessment to full commissioning and O&M.',
     photo: '/images/slideshow/aerial-view-of-part-of-windmill-turbine-in-countryside-green-energy.jpg',
     accent: 'var(--color-blue)',
     accentLight: 'var(--color-blue-light)',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/><circle cx="12" cy="12" r="2"/><path d="M4 12h16"/></svg>`,
   },
   {
-    title: 'Hydroelectric',
+    titleKey: 'services.hydro.title' as const,
+    descKey: 'services.hydro.desc' as const,
     slug: 'hydro',
-    description: 'Small and large-scale hydropower plants leveraging rivers, dams and run-of-river installations.',
     photo: '/images/slideshow/valvestino-dam-in-italy-hydroelectric-power-plant-.jpg',
     accent: 'var(--color-blue)',
     accentLight: 'var(--color-blue-light)',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>`,
   },
   {
-    title: 'Geothermal',
+    titleKey: 'services.geo.title' as const,
+    descKey: 'services.geo.desc' as const,
     slug: 'geothermal',
-    description: 'Harnessing Earth\'s internal heat for electricity generation and direct heating applications.',
     photo: '/images/slideshow/Geothermal_Power_Plants.png',
     accent: 'var(--color-primary)',
     accentLight: 'var(--color-primary-light)',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22V12M12 12C12 6.477 7.523 2 2 2"/><path d="M12 12c0-5.523 4.477-10 10-10"/><path d="M3 21s2-3 4-3 3 3 5 3 3-3 5-3 4 3 4 3"/></svg>`,
   },
   {
-    title: 'Waste-to-Energy',
+    titleKey: 'services.wte.title' as const,
+    descKey: 'services.wte.desc' as const,
     slug: 'waste-to-energy',
-    description: 'Converting municipal and industrial waste streams into clean electricity and heat through advanced combustion.',
     photo: '/images/slideshow/wte_plant.png',
     accent: 'var(--color-primary)',
     accentLight: 'var(--color-primary-light)',
     icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 8C8 10 5.9 16.17 3.82 19.11c-.98 1.39-.63 2.89.5 2.89H19.5c1.13 0 1.48-1.5.5-2.89C17.9 16.17 16 12 16 8"/><path d="M12 2c1 2.5.5 4-1 6.5"/></svg>`,
   },
   {
-    title: 'Energy Consulting',
+    titleKey: 'services.cons.title' as const,
+    descKey: 'services.cons.desc' as const,
     slug: 'consulting',
-    description: 'Feasibility studies, grid connection analysis, permitting, and investment optimization for your energy project.',
     photo: '/images/site/energy-consulting.jpg',
     accent: 'var(--color-amber)',
     accentLight: 'var(--color-amber-light)',
@@ -65,12 +74,12 @@ const services = [
       <span
         class="inline-block px-4 py-1.5 rounded-full text-sm font-600 mb-4"
         style="background: var(--color-amber-light); color: var(--color-amber-dark)"
-      >Our Services</span>
+      >{t('services.badge')}</span>
       <h2 class="text-4xl md:text-5xl font-800 mb-4 leading-snug" style="color: var(--color-dark)">
-        Complete Renewable<br /><span class="text-gradient">Energy Solutions</span>
+        {t('services.title1')}<br /><span class="text-gradient">{t('services.title2')}</span>
       </h2>
       <p class="max-w-xl mx-auto text-lg" style="color: var(--color-muted)">
-        From initial concept to long-term operation, we cover every stage of your renewable energy project.
+        {t('services.subtitle')}
       </p>
     </div>
 
@@ -81,16 +90,14 @@ const services = [
           class="card-hover rounded-2xl bg-white reveal"
           style={`transition-delay: ${i * 80}ms; border: 1px solid rgba(13,27,42,0.07)`}
         >
-          <!-- Photo background top -->
           <div class="relative h-44 overflow-hidden rounded-t-2xl">
             <img
               src={service.photo}
-              alt={service.title}
+              alt={t(service.titleKey)}
               class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               loading="lazy"
             />
             <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 40%, rgba(13,27,42,0.35) 100%)" />
-            <!-- Icon badge -->
             <div
               class="absolute top-4 left-4 w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg"
               style={`background: ${service.accent}`}
@@ -98,16 +105,15 @@ const services = [
             />
           </div>
 
-          <!-- Text content -->
           <div class="p-6">
-            <h3 class="text-xl font-700 mb-2 leading-snug" style="color: var(--color-dark)">{service.title}</h3>
-            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-muted)">{service.description}</p>
+            <h3 class="text-xl font-700 mb-2 leading-snug" style="color: var(--color-dark)">{t(service.titleKey)}</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color: var(--color-muted)">{t(service.descKey)}</p>
             <a
-              href={`/services/${service.slug}`}
+              href={`${prefix}/services/${service.slug}`}
               class="inline-flex items-center gap-1.5 text-sm font-600 transition-all hover:gap-2.5"
               style={`color: ${service.accent}`}
             >
-              Learn more
+              {t('services.learnMore')}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
