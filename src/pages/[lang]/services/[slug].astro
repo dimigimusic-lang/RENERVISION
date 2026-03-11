@@ -32,7 +32,24 @@ const title = translated?.title ?? service.title;
 const tagline = translated?.tagline ?? service.tagline;
 const description = translated?.description ?? service.description;
 
-const { heroImage, accent, accentLight, accentDark, howItWorks, benefits, chart } = service;
+const { heroImage, accent, accentLight, accentDark, howItWorks: enHowItWorks, benefits: enBenefits, chart } = service;
+
+// Overlay translated howItWorks and benefits if available
+const howItWorks = translated?.howItWorks
+  ? enHowItWorks.map((step, i) => ({
+      ...step,
+      title: translated.howItWorks![i]?.title ?? step.title,
+      description: translated.howItWorks![i]?.description ?? step.description,
+    }))
+  : enHowItWorks;
+
+const benefits = translated?.benefits
+  ? enBenefits.map((b, i) => ({
+      ...b,
+      title: translated.benefits![i]?.title ?? b.title,
+      description: translated.benefits![i]?.description ?? b.description,
+    }))
+  : enBenefits;
 ---
 
 <Layout title={`${title} — RENERVISION`} description={description}>
