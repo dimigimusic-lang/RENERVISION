@@ -16,9 +16,41 @@ export function getStaticPaths() {
 
 const { service } = Astro.props;
 const { title, tagline, description, heroImage, accent, accentLight, accentDark, stats, howItWorks, benefits, chart } = service;
+
+const serviceSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: title,
+  description: description,
+  provider: {
+    '@type': 'Organization',
+    name: 'RENERVISION',
+    url: 'https://renervision.com',
+  },
+  areaServed: { '@type': 'Place', name: 'Europe' },
+  url: `https://renervision.com/services/${service.slug}`,
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://renervision.com' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://renervision.com/#services' },
+    { '@type': 'ListItem', position: 3, name: title, item: `https://renervision.com/services/${service.slug}` },
+  ],
+});
 ---
 
-<Layout title={`${title} — RENERVISION`} description={description}>
+<Layout
+  lang="en"
+  title={`${title} — RENERVISION`}
+  description={`${tagline}. ${description}`}
+  ogImage={heroImage}
+  ogType="article"
+>
+  <script type="application/ld+json" is:inline set:html={serviceSchema} />
+  <script type="application/ld+json" is:inline set:html={breadcrumbSchema} />
   <Header lang="en" />
   <main>
 

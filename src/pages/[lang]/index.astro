@@ -18,9 +18,33 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params as { lang: Lang };
+
+const pageMeta: Record<string, { title: string; description: string }> = {
+  de: {
+    title: 'RENERVISION – Erneuerbare Energielösungen in Europa',
+    description: 'RENERVISION liefert Solar-, Wind-, Wasser-, Geothermie- und Abfallverwertungslösungen für Privat-, Gewerbe- und Kommunalkunden in ganz Europa.',
+  },
+  fr: {
+    title: 'RENERVISION – Solutions d\'Énergie Renouvelable en Europe',
+    description: 'RENERVISION propose des solutions complètes en énergie solaire, éolienne, hydraulique, géothermique et valorisation des déchets pour clients résidentiels, commerciaux et municipaux en Europe.',
+  },
+  es: {
+    title: 'RENERVISION – Soluciones de Energía Renovable en Europa',
+    description: 'RENERVISION ofrece soluciones integrales de energía solar, eólica, hidroeléctrica, geotérmica y residuos en Europa para clientes residenciales, comerciales y municipales.',
+  },
+  hr: {
+    title: 'RENERVISION – Rješenja Obnovljive Energije u Europi',
+    description: 'RENERVISION isporučuje sveobuhvatna rješenja za solarnu, vjetarnu, hidro, geotermalnu energiju i energiju iz otpada za stambene, poslovne i komunalne klijente diljem Europe.',
+  },
+  zh: {
+    title: 'RENERVISION – 欧洲可再生能源解决方案',
+    description: 'RENERVISION为欧洲住宅、商业和市政客户提供太阳能、风能、水电、地热能及垃圾发电全流程解决方案。',
+  },
+};
+const meta = pageMeta[lang] ?? pageMeta.de;
 ---
 
-<Layout>
+<Layout lang={lang} title={meta.title} description={meta.description}>
   <Header lang={lang} />
   <main>
     <Hero lang={lang} />

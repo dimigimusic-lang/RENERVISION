@@ -50,9 +50,38 @@ const benefits = translated?.benefits
       description: translated.benefits![i]?.description ?? b.description,
     }))
   : enBenefits;
+
+const serviceSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: title,
+  description: description,
+  provider: { '@type': 'Organization', name: 'RENERVISION', url: 'https://renervision.com' },
+  areaServed: { '@type': 'Place', name: 'Europe' },
+  url: `https://renervision.com/${lang}/services/${service.slug}`,
+  inLanguage: lang,
+});
+
+const breadcrumbSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: t('servicePage.breadHome'), item: `https://renervision.com/${lang}` },
+    { '@type': 'ListItem', position: 2, name: t('servicePage.breadServices'), item: `https://renervision.com/${lang}/#services` },
+    { '@type': 'ListItem', position: 3, name: title, item: `https://renervision.com/${lang}/services/${service.slug}` },
+  ],
+});
 ---
 
-<Layout title={`${title} — RENERVISION`} description={description}>
+<Layout
+  lang={lang}
+  title={`${title} — RENERVISION`}
+  description={`${tagline}. ${description}`}
+  ogImage={heroImage}
+  ogType="article"
+>
+  <script type="application/ld+json" is:inline set:html={serviceSchema} />
+  <script type="application/ld+json" is:inline set:html={breadcrumbSchema} />
   <Header lang={lang} />
   <main>
 

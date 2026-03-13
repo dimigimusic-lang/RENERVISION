@@ -4,26 +4,114 @@ import '../styles/global.css';
 export interface Props {
   title?: string;
   description?: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
 }
 
 const {
   title = 'RENERVISION – Renewable Energy Solutions',
   description = 'Leading renewable energy company delivering solar, wind, hydro, geothermal and waste-to-energy solutions across Europe.',
+  lang = 'en',
+  canonical,
+  ogImage = '/images/og-default.jpg',
+  ogType = 'website',
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = 'https://renervision.com';
+const canonicalURL = canonical ?? `${siteUrl}${Astro.url.pathname}`;
+
+// Build hreflang alternates: strip current lang prefix, re-add per language
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(de|fr|es|hr|zh)(\/|$)/, '/');
+const hreflangs = [
+  { hreflang: 'en',       href: `${siteUrl}${pathWithoutLang}` },
+  { hreflang: 'de',       href: `${siteUrl}/de${pathWithoutLang}` },
+  { hreflang: 'fr',       href: `${siteUrl}/fr${pathWithoutLang}` },
+  { hreflang: 'es',       href: `${siteUrl}/es${pathWithoutLang}` },
+  { hreflang: 'hr',       href: `${siteUrl}/hr${pathWithoutLang}` },
+  { hreflang: 'zh-Hans',  href: `${siteUrl}/zh${pathWithoutLang}` },
+  { hreflang: 'x-default', href: `${siteUrl}${pathWithoutLang}` },
+].map(h => ({ ...h, href: h.href.replace(/\/\/$/, '/').replace(/([^:])\/+$/, '$1') || siteUrl }));
+
+// OG locale map
+const ogLocale: Record<string, string> = { en: 'en_US', de: 'de_DE', fr: 'fr_FR', es: 'es_ES', hr: 'hr_HR', zh: 'zh_CN' };
+
+// JSON-LD – Organization
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'RENERVISION',
+  url: siteUrl,
+  logo: `${siteUrl}/images/Renervision-Logo.png`,
+  description: 'Renewable energy solutions provider across Europe — solar, wind, hydro, geothermal and waste-to-energy.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Savska cesta 41',
+    addressLocality: 'Zagreb',
+    postalCode: '10000',
+    addressCountry: 'HR',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+48733301364',
+    contactType: 'customer service',
+    availableLanguage: ['English', 'German', 'French', 'Spanish', 'Croatian', 'Chinese'],
+  },
+  areaServed: { '@type': 'Place', name: 'Europe' },
+  serviceType: ['Solar Energy', 'Wind Turbines', 'Hydroelectric Power', 'Geothermal Energy', 'Waste-to-Energy', 'Energy Consulting'],
+});
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
 
-    <!-- Preconnect for Google Fonts -->
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="RENERVISION" />
+    <meta property="og:locale" content={ogLocale[lang] ?? 'en_US'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- hreflang alternates -->
+    {hreflangs.map(({ hreflang, href }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
+
+    <!-- Favicon & manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#E84415" />
+
+    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Organisation schema -->
+    <script type="application/ld+json" is:inline set:html={orgSchema} />
   </head>
   <body>
     <slot />
